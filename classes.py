@@ -56,5 +56,5 @@ class Onibus:
             print("Fiscal anterior removido!")
         self.fiscal = fiscal
     
-    def adicionarPonto(self, ponto):
-        self.pontos = ponto
+    def adicionarPonto(self, identidade, ponto):
+        self.pontos[identidade] = ponto

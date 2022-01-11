@@ -75,5 +75,22 @@ def relacionarPonto():
     identidade2 = input("Digite o id do ônibus: ")
     ponto = dicionarioPontos[identidade1]
     onibus = dicionarioOnibus[identidade2]
-    onibus.adicionarPonto(ponto)
+    onibus.adicionarPonto(identidade1, ponto)
     dicionarioOnibus[identidade2] = onibus
+
+#Funções de alterar
+def alterarOnibus():
+    identidade = input("Digite o id do onibus: ")
+    onibus = dicionarioOnibus[identidade]
+    onibus.placa = input("Digite a placa do ônibus: ")
+    onibus.modelo = input("Digite o modelo do onibus: ")
+    #alterar pontos
+    #alterar motorista
+    #alterar fiscal
+def alterarPonto():
+    identidade = input("Digite o id do ponto de parada: ")
+    ponto = dicionarioPontos[identidade]
+    ponto.nome = input("Digite o novo nome do ponto de parada: ")
+    ponto.rua = input("Digite a nova rua do ponto de parada: ")
+    ponto.bairro = input("Digite o novo bairro do potno de parada: ")
+    
