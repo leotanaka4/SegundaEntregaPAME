@@ -44,27 +44,28 @@ while (comando != "Sair"):
     elif(a == "Alterar"):
         b = input("Digite Ônibus/Ponto/Motorista/Fiscal/Rota\n")
         if (b == "Ônibus"):
-            pass
+            alterarOnibus()
         elif (b == "Ponto"):
-            pass
+            alterarPonto()
         elif (b == "Motorista"):
-            pass
+            alterarMotorista()
         elif (b == "Fiscal"):
-            pass
+            alterarFiscal()
         elif (b == "Rota"):
             pass
+            #alterar rota
         else:
             print("Essa opção não existe!")
     elif(a == "Deletar"):
         b = input("Digite Ônibus/Ponto/Motorista/Fiscal\n")
         if (b == "Ônibus"):
-            pass
+            deletarOnibus()
         elif (b == "Ponto"):
-            pass
+            deletarPonto()
         elif (b == "Motorista"):
-            pass
+            deletarMotorista()
         elif (b == "Fiscal"):
-            pass
+            deletarFiscal()
         else:
             print("Essa opção não existe!")
     elif(a == "Sair"):

@@ -23,7 +23,7 @@ def criarOnibus():
         j += 1
         comando = dicionarioMotoristas.get(j, "ID disponível!")
     dicionarioMotoristas[j] = Motorista(i, nome, data, genero)
-    dicionarioOnibus[i] = Onibus(placa, modelo, dicionarioMotoristas[nome])
+    dicionarioOnibus[i] = Onibus(j, placa, modelo, dicionarioMotoristas[j])
 def criarPonto():
     nome = input("Digite o nome do ponto de parada: ")
     rua = input("Digite a rua do ponto de parada: ")
