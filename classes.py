@@ -47,6 +47,10 @@ class Onibus:
                 \nMotorista: { self.motorista }\
                 \nFiscal: { self.fiscal }"
     
+    def adicionarMotorista(self, motorista):
+        print("Motorista com ID %d foi removido!" %(self.motorista))
+        self.motorista = motorista
+
     def adicionarFiscal(self, fiscal):
         if (self.motorista != " "):
             print("Fiscal anterior removido!")

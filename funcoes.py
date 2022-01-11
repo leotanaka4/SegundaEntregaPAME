@@ -52,28 +52,28 @@ def criarFiscal():
     i = 0
     while (comando != "ID disponível!"):
         i += 1
-        var = dicionarioFiscais.get(i, comando = "ID disponível!")
+        comando = dicionarioFiscais.get(i, "ID disponível!")
     dicionarioFiscais[i] = Fiscal(i, nome, data, genero)
 
 #Funções de relacionar
 def relacionarMotorista():
-    nome = input("Digite o nome do motorista: ")
-    placa = input("Digite a placa do ônibus: ")
-    motorista = dicionarioMotoristas[nome]
-    onibus = dicionarioOnibus[placa]
-    onibus.motorista = motorista
-    dicionarioOnibus[placa] = onibus
+    identidade1 = input("Digite o id do motorista: ")
+    identidade2 = input("Digite o id do ônibus: ")
+    motorista = dicionarioMotoristas[identidade1]
+    onibus = dicionarioOnibus[identidade2]
+    onibus.adicionarMotorista(motorista)
+    dicionarioOnibus[identidade2] = onibus
 def relacionarFiscal():
-    nome = input("Digite o nome do fiscal: ")
-    placa = input("Digite a placa do ônibus: ")
-    fiscal = dicionarioFiscais[nome]
-    onibus = dicionarioOnibus[placa]
-    onibus.fiscal = fiscal
-    dicionarioOnibus[placa] = onibus
+    identidade1 = input("Digite o id do fiscal: ")
+    identidade2 = input("Digite o id do ônibus: ")
+    fiscal = dicionarioFiscais[identidade1]
+    onibus = dicionarioOnibus[identidade2]
+    onibus.adicionarFiscal(fiscal)
+    dicionarioOnibus[identidade2] = onibus
 def relacionarPonto():
-    nome = input("Digite o nome do ponto de parada: ")
-    placa = input("Digite a placa do ônibus: ")
-    ponto = dicionarioPontos[nome]
-    onibus = dicionarioOnibus[placa]
-    onibus.pontos[nome] = ponto
-    dicionarioOnibus[onibus.nome] = onibus
+    identidade1 = input("Digite o id da parada: ")
+    identidade2 = input("Digite o id do ônibus: ")
+    ponto = dicionarioPontos[identidade1]
+    onibus = dicionarioOnibus[identidade2]
+    onibus.adicionarPonto(ponto)
+    dicionarioOnibus[identidade2] = onibus
