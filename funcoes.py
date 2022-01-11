@@ -87,10 +87,43 @@ def alterarOnibus():
     #alterar pontos
     #alterar motorista
     #alterar fiscal
+    dicionarioOnibus[identidade] = onibus
 def alterarPonto():
     identidade = input("Digite o id do ponto de parada: ")
     ponto = dicionarioPontos[identidade]
-    ponto.nome = input("Digite o novo nome do ponto de parada: ")
-    ponto.rua = input("Digite a nova rua do ponto de parada: ")
-    ponto.bairro = input("Digite o novo bairro do potno de parada: ")
-    
+    ponto.nome = input("Digite o nome do ponto de parada: ")
+    ponto.rua = input("Digite a rua do ponto de parada: ")
+    ponto.bairro = input("Digite o bairro do potno de parada: ")
+    dicionarioPontos[identidade] = ponto
+    #gerar conexão com onibus
+def alterarMotorista():
+    identidade = input("Digite o id do motorista: ")
+    motorista = dicionarioMotoristas[identidade]
+    motorista.nome = input("Digite o nome do motorista: ")
+    motorista.data = input("Digite a data de nascimento do motorista: ")
+    motorista.genero = input("Digite o gênero do fiscal: ")
+    dicionarioMotoristas[identidade] = motorista
+    #gerar conexão com onibus
+def alterarFiscal():
+    identidade = input("Digite o id do fiscal: ")
+    fiscal = dicionarioFiscais[identidade]
+    fiscal.nome = input("Digite o nome do fiscal: ")
+    fiscal.data = input("Digite a data de nascimento do fiscal: ")
+    fiscal.genero = input("Digite o gênero do fiscal: ")
+    dicionarioFiscais[identidade] = fiscal
+    #gerar conexão com onibus
+#Alterar rota ainda não pensada
+
+#Funções de deletar
+def deletarOnibus():
+    identidade = input("Digite o id do ônibus: ")
+    deletado = dicionarioOnibus.pop(identidade)
+def deletarPonto():
+    identidade = input("Digite o id do ponto de parada: ")
+    deletado = dicionarioPontos.pop(identidade)
+def deletarMotorista():
+    identidade = input("Digite o id do motorista: ")
+    deletado = dicionarioMotoristas.pop(identidade)
+def deletarFiscal():
+    identidade = input("Digite o id do fiscal: ")
+    deletado = dicionarioFiscais.pop(identidade)
