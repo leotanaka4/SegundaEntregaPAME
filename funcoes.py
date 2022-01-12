@@ -1,6 +1,6 @@
 from classes import *
 
-dicionarioOnibus = {} #Dicionário com ônibus e seus
+dicionarioOnibus = {} #Dicionário com ônibus
 dicionarioPontos = {} #Pontos de parada não utilizados
 dicionarioMotoristas = {} #Motoristas não utilizados
 dicionarioFiscais = {} #Fiscais não utilizados
@@ -79,17 +79,17 @@ def relacionarPonto():
 
 #Funções de alterar
 def alterarOnibus():
-    idonibus = input("Digite o ID do onibus: ")
+    idonibus = int(input("Digite o ID do ônibus: "))
     onibus = dicionarioOnibus[idonibus]
     onibus.alterarDados()#Altera somente placa e modelo
 def alterarPonto():
-    identidade = input("Digite o ID do ponto de parada: ")
+    identidade = int(input("Digite o ID do ponto de parada: "))
     ponto = dicionarioPontos[identidade]
     dicionarioPontos[identidade] = ponto.alterarPonto()#Altera somente pontos de parada não utilizados
 def alterarMotorista():
-    resposta = input("Você deseja alterar um motorista Ativado ou Desativado: ")
+    resposta = input("Você deseja alterar um motorista Ativado ou Desativado? ")
     if (resposta == "Ativado"):
-        idonibus = input("Digite o ID do ônibus: ")
+        idonibus = int(input("Digite o ID do ônibus: "))
         onibus = dicionarioOnibus[idonibus]
         onibus.motorista = onibus.motorista.alterarMotorista()
         dicionarioOnibus[idonibus] = onibus
@@ -100,20 +100,20 @@ def alterarMotorista():
     else:
         print("Não foi feita alteração!")
 def alterarFiscal():
-    resposta = input("Você deseja alterar um fiscal Ativado ou Desativado: ")
+    resposta = input("Você deseja alterar um fiscal Ativado ou Desativado? ")
     if (resposta == "Ativado"):
-        idonibus = input("Digite o ID do ônibus: ")
+        idonibus = int(input("Digite o ID do ônibus: "))
         onibus = dicionarioOnibus[idonibus]
         onibus.fiscal = onibus.fiscal.alterarFiscal()
         dicionarioOnibus[idonibus] = onibus
     elif (resposta == "Desativado"):
-        idfiscal = input("Digite o ID do fiscal: ")
+        idfiscal = int(input("Digite o ID do fiscal: "))
         fiscal = dicionarioFiscais[idfiscal]
         dicionarioFiscais[fiscal] = fiscal.alterarFiscal()
     else:
         print("Não foi feita alteração!")
 def alterarRota():
-    idonibus = input("Digite o ID do ônibus com a rota que deseja alterar: ")
+    idonibus = int(input("Digite o ID do ônibus com a rota que deseja alterar: "))
     onibus = dicionarioOnibus[idonibus]
     for ponto in onibus.rota:
         print(ponto)
@@ -125,7 +125,7 @@ def alterarRota():
                 idponto += 1
                 comando = dicionarioPontos.get(idponto, "ID disponível!")
             dicionarioPontos[idponto] = onibus.rota.pop(ponto)
-            idponto = int(input("Digite o id do ponto de parada que deseja usar: "))
+            idponto = int(input("Digite o ID do ponto de parada que deseja usar: "))
             onibus.adicionarPonto(idponto, dicionarioPontos.pop(idponto))
             print("ID do ponto de parada:"+str(idponto))
         elif (resposta == "Remover"):
@@ -140,7 +140,7 @@ def alterarRota():
 
 #Funções de deletar
 def deletarOnibus():
-    idonibus = input("Digite o ID do ônibus: ")
+    idonibus = int(input("Digite o ID do ônibus: "))
     onibus = dicionarioOnibus[idonibus]
     for ponto in onibus.rota:
         comando = " "
@@ -163,17 +163,17 @@ def deletarOnibus():
             comando = dicionarioFiscais.get(idfiscal, "ID disponível!")
         dicionarioFiscais[idfiscal] = onibus.fiscal
 def deletarPonto():
-    idponto = input("Digite o ID do ponto de parada: ")
+    idponto = int(input("Digite o ID do ponto de parada: "))
     dicionarioPontos.pop(idponto)#Não é possível remover pontos utilizados
 def deletarMotorista():
-    idmotorista = input("Digite o ID do motorista: ")
+    idmotorista = int(input("Digite o ID do motorista: "))
     dicionarioMotoristas.pop(idmotorista)#Não é possível remover um motorista ativado para seguir lógica proposta
 def deletarFiscal():
-    resposta = input("Você deseja alterar um fiscal Ativado ou Desativado: ")
+    resposta = input("Você deseja alterar um fiscal Ativado ou Desativado? ")
     if (resposta == "Ativado"):
-        idonibus = ("Digite o id do ônibus: ")
+        idonibus = int(input("Digite o id do ônibus: "))
         onibus = dicionarioOnibus[idonibus]
         onibus.fiscal = " "
     elif (resposta == "Desativado"):
-        identidade = input("Digite o ID do fiscal: ")
-        dicionarioFiscais.pop(identidade)
+        idfiscal = int(input("Digite o ID do fiscal: "))
+        dicionarioFiscais.pop(idfiscal)

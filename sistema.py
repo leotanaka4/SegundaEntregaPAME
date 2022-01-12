@@ -6,16 +6,16 @@ comando=""
 
 while (comando != "Sair"):
     acao = input("Que ação você deseja tomar (Criar/Mostrar/Relacionar/Alterar/Deletar/Sair)?\n")
-    b= " "
+    opcao= " "
     if (acao == "Criar"):
-        b = input("Digite uma das seguintes opções (Ônibus/Ponto/Motorista/Fiscal):\n")
-        if (b == "Ônibus"):
+        opcao = input("Digite uma das seguintes opções (Ônibus/Ponto/Motorista/Fiscal):\n")
+        if (opcao == "Ônibus"):
             criarOnibus()
-        elif (b == "Ponto"):
+        elif (opcao == "Ponto"):
             criarPonto()
-        elif (b == "Motorista"):
+        elif (opcao == "Motorista"):
             criarMotorista()
-        elif (b == "Fiscal"):
+        elif (opcao == "Fiscal"):
             criarFiscal()
         else:
             print("Essa opção não existe!")
@@ -46,7 +46,7 @@ while (comando != "Sair"):
         else:
             print("Essa opção não existe!")
     elif(acao == "Alterar"):
-        opcao = input("Digite uma das seguintes opções ()Ônibus/Ponto/Motorista/Fiscal/Rota):\n")
+        opcao = input("Digite uma das seguintes opções (Ônibus/Ponto/Motorista/Fiscal/Rota):\n")
         if (opcao == "Ônibus"):
             alterarOnibus()
         elif (opcao == "Ponto"):

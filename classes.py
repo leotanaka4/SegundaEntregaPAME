@@ -13,7 +13,7 @@ class Motorista(Pessoa):
     def alterarMotorista(self):
         self.nome = input("Digite o nome do motorista: ")
         self.data = input("Digite a data de nascimento do motorista: ")
-        self.genero = input("Digite o gênero do fiscal: ")
+        self.genero = input("Digite o gênero do motorista: ")
         return self
 
 class Fiscal(Pessoa):
@@ -35,7 +35,7 @@ class Ponto:
     def __str__(self):
         return f"Nome: { self.nome }\
                 \nRua: { self.rua }\
-                \nGênero: { self.bairro }"
+                \nBairro: { self.bairro }"
     
     def alterarPonto(self):
         self.nome = input("Digite o nome do ponto de parada: ")
