@@ -1,38 +1,50 @@
 class Pessoa:
-    def __init__(self, identidade, nome, data, genero):
-        self.identidade = identidade
+    def __init__(self, nome, data, genero):
         self.nome = nome
         self.data = data
         self.genero = genero
     
     def __str__(self):
-        return f"ID: {self.identidade}\
-                \nNome: { self.nome }\
+        return f"Nome: { self.nome }\
                 \nData: { self.data }\
                 \nGênero: { self.genero }"
-
+    
 class Motorista(Pessoa):
-    pass
+    def alterarMotorista(self):
+        self.nome = input("Digite o nome do motorista: ")
+        self.data = input("Digite a data de nascimento do motorista: ")
+        self.genero = input("Digite o gênero do fiscal: ")
+        return self
 
 class Fiscal(Pessoa):
-    pass
+    def alterarFiscal(self):
+        if (self == " "):
+            print("Não existe fiscal que possa ser editado!")
+        else:
+            self.nome = input("Digite o nome do fiscal: ")
+            self.data = input("Digite a data de nascimento do fiscal: ")
+            self.genero = input("Digite o gênero do fiscal: ")
+        return self
 
 class Ponto:
-    def __init__(self, identidade, nome, rua, bairro):
-        self.identidade = identidade
+    def __init__(self, nome, rua, bairro):
         self.nome = nome
         self.rua = rua
         self.bairro = bairro
 
     def __str__(self):
-        return f"ID: {self.identidade}\
-                \nNome: { self.nome }\
+        return f"Nome: { self.nome }\
                 \nRua: { self.rua }\
                 \nGênero: { self.bairro }"
+    
+    def alterarPonto(self):
+        self.nome = input("Digite o nome do ponto de parada: ")
+        self.rua = input("Digite a rua do ponto de parada: ")
+        self.bairro = input("Digite o bairro do potno de parada: ")
+        return self
 
 class Onibus:
-    def __init__(self, identidade, placa, modelo, motorista):
-        self.identidade = identidade
+    def __init__(self, placa, modelo, motorista):
         self.placa = placa
         self.modelo = modelo
         self.rota = []
@@ -40,21 +52,32 @@ class Onibus:
         self.fiscal = " "
     
     def __str__(self):
-        return f"ID: {self.identidade}\
-                \nPlaca: { self.placa }\
+        return f"Placa: { self.placa }\
                 \nModelo: { self.modelo }\
-                \nPontos: { self.pontos }\
+                \nRota: { self.rota }\
                 \nMotorista: { self.motorista }\
                 \nFiscal: { self.fiscal }"
-    
+
     def adicionarMotorista(self, motorista):
-        print("Motorista com ID %d foi removido!" %(self.motorista.identidade))
+        print("O motorista foi removido do ônibus e movido para realocação!")
+        motoristaRemovido = self.motorista
         self.motorista = motorista
+        print("O novo motorista foi adicionado ao ônibus e saiu da realocação!")
+        return motoristaRemovido
 
     def adicionarFiscal(self, fiscal):
         if (self.motorista != " "):
-            print("Fiscal com ID %d foi removido!" %(self.fiscal.identidade))
+            pass
+        else:
+            print("O motorista foi removido do ônibus e movido para realocação!")
+            fiscalRemovido = self.motorista
         self.fiscal = fiscal
+        print("O novo fiscal foi adicionado ao ônibus e saiu da realocação!")
+        return fiscalRemovido
     
     def adicionarPonto(self, identidade, ponto):
         self.rota.insert(identidade, ponto)
+
+    def alterarDados(self):
+        self.placa = input("Digite a placa do ônibus: ")
+        self.modelo = input("Digite o modelo do onibus: ")

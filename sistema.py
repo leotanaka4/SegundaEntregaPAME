@@ -5,10 +5,10 @@ print("Bem vindo a rede de transportes!\nO que você deseja fazer?")
 comando=""
 
 while (comando != "Sair"):
-    a = input("Digite Criar/Mostrar/Relacionar/Alterar/Deletar/Sair\n")
+    a = input("Que ação você deseja tomar (Criar/Mostrar/Relacionar/Alterar/Deletar/Sair)?\n")
     b=""
     if (a == "Criar"):
-        b = input("Digite Ônibus/Ponto/Motorista/Fiscal\n")
+        b = input("Digite uma das seguintes opções (Ônibus/Ponto/Motorista/Fiscal):\n")
         if (b == "Ônibus"):
             criarOnibus()
         elif (b == "Ponto"):
@@ -20,19 +20,23 @@ while (comando != "Sair"):
         else:
             print("Essa opção não existe!")
     elif(a == "Mostrar"):
-        b = input("Digite Ônibus/Rotas/Motoristas/Fiscais\n")
+        b = input("Digite uma das seguintes opções (Ônibus/Rotas/Motoristas/Fiscais):\n")
         if (b == "Ônibus"):
-            print(dicionarioOnibus)
+            for idonibus in dicionarioOnibus:
+                print(dicionarioOnibus[idonibus])
         elif (b == "Rotas"):
-            print(dicionarioPontos)
+            for idponto in dicionarioPontos:
+                print(dicionarioPontos[idponto])
         elif (b == "Motoristas"):
-            print(dicionarioMotoristas)
-        elif (b == "Fiscal"):
-            print(dicionarioFiscais)
+            for idmotorista in dicionarioMotoristas:
+                print(dicionarioMotoristas[idmotorista])
+        elif (b == "Fiscais"):
+            for idfiscal in dicionarioFiscais:
+                print(dicionarioFiscais[idfiscal])
         else:
             print("Essa opção não existe!")
     elif(a == "Relacionar"):
-        b = input("Digite Motorista/Fiscal/Ponto\n")
+        b = input("Digite uma das seguintes opções (Motorista/Fiscal/Ponto):\n")
         if (b == "Motorista"):
             relacionarMotorista()
         elif (b == "Fiscal"):
@@ -42,7 +46,7 @@ while (comando != "Sair"):
         else:
             print("Essa opção não existe!")
     elif(a == "Alterar"):
-        b = input("Digite Ônibus/Ponto/Motorista/Fiscal/Rota\n")
+        b = input("Digite uma das seguintes opções ()Ônibus/Ponto/Motorista/Fiscal/Rota):\n")
         if (b == "Ônibus"):
             alterarOnibus()
         elif (b == "Ponto"):
@@ -53,11 +57,11 @@ while (comando != "Sair"):
             alterarFiscal()
         elif (b == "Rota"):
             pass
-            #alterar rota
+            alterarRota()
         else:
             print("Essa opção não existe!")
     elif(a == "Deletar"):
-        b = input("Digite Ônibus/Ponto/Motorista/Fiscal\n")
+        b = input("Digite uma das seguintes opções (Ônibus/Ponto/Motorista/Fiscal):\n")
         if (b == "Ônibus"):
             deletarOnibus()
         elif (b == "Ponto"):

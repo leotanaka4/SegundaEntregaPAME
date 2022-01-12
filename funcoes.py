@@ -1,9 +1,9 @@
 from classes import *
 
-dicionarioOnibus = {}
-dicionarioPontos = {}
-dicionarioMotoristas = {}
-dicionarioFiscais = {}
+dicionarioOnibus = {} #Dicionário com ônibus e seus
+dicionarioPontos = {} #Pontos de parada não utilizados
+dicionarioMotoristas = {} #Motoristas não utilizados
+dicionarioFiscais = {} #Fiscais não utilizados
 
 #Funções de criar
 def criarOnibus():
@@ -14,62 +14,57 @@ def criarOnibus():
     data = input("Digite a data de nascimento do motorista: ")
     genero = input("Digite o gênero do motorista: ")
     comando = " "
-    i = 0
+    idonibus = 0
     while (comando != "ID disponível!"):
-        i += 1
-        comando = dicionarioOnibus.get(i,"ID disponível!")
-    j = 0
-    while (comando != "ID disponível!"):
-        j += 1
-        comando = dicionarioMotoristas.get(j, "ID disponível!")
-    dicionarioMotoristas[j] = Motorista(i, nome, data, genero)
-    dicionarioOnibus[i] = Onibus(j, placa, modelo, dicionarioMotoristas[j])
+        idonibus += 1
+        comando = dicionarioOnibus.get(idonibus,"ID disponível!")
+    dicionarioOnibus[idonibus] = Onibus(placa, modelo, Motorista(nome, data, genero))
 def criarPonto():
     nome = input("Digite o nome do ponto de parada: ")
     rua = input("Digite a rua do ponto de parada: ")
     bairro = input("Digite o bairro do ponto de parada: ")
     comando = " "
-    i = 0
+    idponto = 0
     while (comando != "ID disponível!"):
-        i += 1
-        comando = dicionarioPontos.get(i, "ID disponível!")
-    dicionarioPontos[i] = Ponto(i, nome, rua, bairro)
+        idponto += 1
+        comando = dicionarioPontos.get(idponto, "ID disponível!")
+    dicionarioPontos[idponto] = Ponto(nome, rua, bairro)
 def criarMotorista():
     nome = input("Digite o nome do motorista: ")
     data = input("Digite a data de nascimento do motorista: ")
     genero = input("Digite o gênero do motorista: ")
     comando = " "
-    i = 0
+    idmotorista = 0
     while (comando != "ID disponível!"):
-        i += 1
-        comando = dicionarioMotoristas.get(i, "ID disponível!")
-    dicionarioMotoristas[i] = Motorista(i, nome, data, genero)
+        idmotorista += 1
+        comando = dicionarioMotoristas.get(idmotorista, "ID disponível!")
+    dicionarioMotoristas[idmotorista] = Motorista(nome, data, genero)
 def criarFiscal():
     nome = input("Digite o nome do fiscal: ")
     data = input("Digite a data de nascimento do fiscal: ")
     genero = input("Digite o gênero do fiscal: ")
     comando = " "
-    i = 0
+    idfiscal = 0
     while (comando != "ID disponível!"):
-        i += 1
-        comando = dicionarioFiscais.get(i, "ID disponível!")
-    dicionarioFiscais[i] = Fiscal(i, nome, data, genero)
+        idfiscal += 1
+        comando = dicionarioFiscais.get(idfiscal, "ID disponível!")
+    dicionarioFiscais[idfiscal] = Fiscal(nome, data, genero)
 
 #Funções de relacionar
 def relacionarMotorista():
-    identidade1 = input("Digite o id do motorista: ")
-    identidade2 = input("Digite o id do ônibus: ")
-    motorista = dicionarioMotoristas[identidade1]
-    onibus = dicionarioOnibus[identidade2]
-    onibus.adicionarMotorista(motorista)
-    dicionarioOnibus[identidade2] = onibus
+    idmotorista = input("Digite o id do motorista: ")
+    idonibus = input("Digite o id do ônibus: ")
+    motorista = dicionarioMotoristas[idmotorista]
+    onibus = dicionarioOnibus[idonibus]
+    dicionarioMotoristas[idmotorista] = onibus.adicionarMotorista(motorista)
+    dicionarioOnibus[idonibus] = onibus
 def relacionarFiscal():
-    identidade1 = input("Digite o id do fiscal: ")
-    identidade2 = input("Digite o id do ônibus: ")
-    fiscal = dicionarioFiscais[identidade1]
-    onibus = dicionarioOnibus[identidade2]
-    onibus.adicionarFiscal(fiscal)
-    dicionarioOnibus[identidade2] = onibus
+    idfiscal = input("Digite o id do fiscal: ")
+    idonibus = input("Digite o id do ônibus: ")
+    fiscal = dicionarioFiscais[idfiscal]
+    onibus = dicionarioOnibus[idonibus]
+    dicionarioFiscais[idfiscal] = onibus.adicionarFiscal(fiscal)
+    dicionarioOnibus[idonibus] = onibus
 def relacionarPonto():
     identidade1 = input("Digite o id da parada: ")
     identidade2 = input("Digite o id do ônibus: ")
@@ -80,73 +75,80 @@ def relacionarPonto():
 
 #Funções de alterar
 def alterarOnibus():
-    identidade1 = input("Digite o id do onibus: ")
-    onibus = dicionarioOnibus[identidade1]
-    onibus.placa = input("Digite a placa do ônibus: ")
-    onibus.modelo = input("Digite o modelo do onibus: ")
-    pergunta = input("Você deseja editar a rota (SIM/NÃO)?")
-    if (pergunta == "SIM"):
-        onibus.rota = []
-        comando = " "
-        while (comando != "Parar"):
-            comando = input("Deseja Adicionar/Parar")
-            if (comando != "Parar"):
-                identidade2 = input("Digite o id do ponto de parada: ")
-                ponto = dicionarioPontos[identidade2]
-                onibus.adicionarPonto(identidade2, ponto)
-    else:
-        pass
-    identidade3 = input("Digite o id do motorista: ")
-    onibus.motorista = dicionarioMotoristas[identidade3]
-    identidade4 = input("Digite o ide do fiscal: ")
-    onibus.fiscal = dicionarioFiscais[identidade4]
-    dicionarioOnibus[identidade1] = onibus
+    idonibus = input("Digite o id do onibus: ")
+    onibus = dicionarioOnibus[idonibus]
+    onibus.alterarDados()#Altera somente placa e modelo
 def alterarPonto():
     identidade = input("Digite o id do ponto de parada: ")
     ponto = dicionarioPontos[identidade]
-    ponto.nome = input("Digite o nome do ponto de parada: ")
-    ponto.rua = input("Digite a rua do ponto de parada: ")
-    ponto.bairro = input("Digite o bairro do potno de parada: ")
-    dicionarioPontos[identidade] = ponto
-    #gerar conexão com onibus
+    dicionarioPontos[identidade] = ponto.alterarPonto()#Altera somente pontos de parada não utilizados
 def alterarMotorista():
-    identidade = input("Digite o id do motorista: ")
-    motorista = dicionarioMotoristas[identidade]
-    motorista.nome = input("Digite o nome do motorista: ")
-    motorista.data = input("Digite a data de nascimento do motorista: ")
-    motorista.genero = input("Digite o gênero do fiscal: ")
-    dicionarioMotoristas[identidade] = motorista
-    #gerar conexão com onibus
+    resposta = input("Você deseja alterar um motorista Ativado ou Desativado: ")
+    if (resposta == "Ativado"):
+        idonibus = input("Digite o id do ônibus: ")
+        onibus = dicionarioOnibus[idonibus]
+        onibus.motorista = onibus.motorista.alterarMotorista()
+        dicionarioOnibus[idonibus] = onibus
+    elif (resposta == "Desativado"):
+        idmotorista = input("Digite o id do motorista: ")
+        motorista = dicionarioMotoristas[idmotorista]
+        dicionarioMotoristas[idmotorista] = motorista.alterarMotorista()
+    else:
+        print("Não foi feita alteração!")
 def alterarFiscal():
-    identidade = input("Digite o id do fiscal: ")
-    fiscal = dicionarioFiscais[identidade]
-    fiscal.nome = input("Digite o nome do fiscal: ")
-    fiscal.data = input("Digite a data de nascimento do fiscal: ")
-    fiscal.genero = input("Digite o gênero do fiscal: ")
-    dicionarioFiscais[identidade] = fiscal
-    #gerar conexão com onibus
+    resposta = input("Você deseja alterar um fiscal Ativado ou Desativado: ")
+    if (resposta == "Ativado"):
+        idonibus = input("Digite o id do ônibus: ")
+        onibus = dicionarioOnibus[idonibus]
+        onibus.fiscal = onibus.fiscal.alterarFiscal()
+        dicionarioOnibus[idonibus] = onibus
+    elif (resposta == "Desativado"):
+        idfiscal = input("Digite o id do fiscal: ")
+        fiscal = dicionarioFiscais[idfiscal]
+        dicionarioFiscais[fiscal] = fiscal.alterarFiscal()
+    else:
+        print("Não foi feita alteração!")
 def alterarRota():
-    identidade1 = input("Digite o id do ônibus: ")
-    onibus = dicionarioOnibus[identidade1]
-    onibus.rota = []
-    comando = " "
-    while (comando != "Parar"):
-        comando = input("Deseja Adicionar/Parar")
-        if (comando != "Parar"):
-            identidade2 = input("Digite o id do ponto de parada: ")
-            ponto = dicionarioPontos[identidade2]
-            onibus.adicionarPonto(identidade2, ponto)
+    idonibus = input("Digite o id do ônibus com a rota que deseja alterar: ")
 
 #Funções de deletar
 def deletarOnibus():
-    identidade = input("Digite o id do ônibus: ")
-    deletado = dicionarioOnibus.pop(identidade)
+    idonibus = input("Digite o id do ônibus: ")
+    onibus = dicionarioOnibus[idonibus]
+    for ponto in onibus.rota:
+        comando = " "
+        idponto = 0
+        while (comando != "ID disponível!"):
+            idponto += 1
+            comando = dicionarioPontos.get(idponto, "ID disponível!")
+        dicionarioPontos[idponto] = ponto
+    comando = " "
+    idmotorista = 0
+    while (comando != "ID disponível!"):
+        idmotorista += 1
+        comando = dicionarioMotoristas.get(idmotorista, "ID disponível!")
+    dicionarioMotoristas[idmotorista] = onibus.motorista
+    if (onibus.fiscal != " "):
+        comando = " "
+        idfiscal = 0
+        while (comando != "ID disponível!"):
+            idfiscal += 1
+            comando = dicionarioFiscais.get(idfiscal, "ID disponível!")
+        dicionarioFiscais[idfiscal] = onibus.fiscal
+    else:
+        pass
 def deletarPonto():
-    identidade = input("Digite o id do ponto de parada: ")
-    deletado = dicionarioPontos.pop(identidade)
+    idponto = input("Digite o id do ponto de parada: ")
+    dicionarioPontos.pop(idponto)#Não é possível remover pontos utilizados
 def deletarMotorista():
-    identidade = input("Digite o id do motorista: ")
-    deletado = dicionarioMotoristas.pop(identidade)
+    idmotorista = input("Digite o id do motorista: ")
+    dicionarioMotoristas.pop(idmotorista)#Não é possível remover um motorista ativado para seguir lógica proposta
 def deletarFiscal():
-    identidade = input("Digite o id do fiscal: ")
-    deletado = dicionarioFiscais.pop(identidade)
+    resposta = input("Você deseja alterar um fiscal Ativado ou Desativado: ")
+    if (resposta == "Ativado"):
+        idonibus = ("Digite o id do ônibus: ")
+        onibus = dicionarioOnibus[idonibus]
+        onibus.fiscal = " "
+    elif (resposta == "Desativado"):
+        identidade = input("Digite o id do fiscal: ")
+        dicionarioFiscais.pop(identidade)
