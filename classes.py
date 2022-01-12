@@ -35,7 +35,7 @@ class Onibus:
         self.identidade = identidade
         self.placa = placa
         self.modelo = modelo
-        self.pontos = []
+        self.rota = []
         self.motorista = motorista
         self.fiscal = " "
     
@@ -48,13 +48,13 @@ class Onibus:
                 \nFiscal: { self.fiscal }"
     
     def adicionarMotorista(self, motorista):
-        print("Motorista com ID %d foi removido!" %(self.motorista))
+        print("Motorista com ID %d foi removido!" %(self.motorista.identidade))
         self.motorista = motorista
 
     def adicionarFiscal(self, fiscal):
         if (self.motorista != " "):
-            print("Fiscal anterior removido!")
+            print("Fiscal com ID %d foi removido!" %(self.fiscal.identidade))
         self.fiscal = fiscal
     
     def adicionarPonto(self, identidade, ponto):
-        self.pontos[identidade] = ponto
+        self.rota.insert(identidade, ponto)

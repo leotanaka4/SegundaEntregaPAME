@@ -80,14 +80,27 @@ def relacionarPonto():
 
 #Funções de alterar
 def alterarOnibus():
-    identidade = input("Digite o id do onibus: ")
-    onibus = dicionarioOnibus[identidade]
+    identidade1 = input("Digite o id do onibus: ")
+    onibus = dicionarioOnibus[identidade1]
     onibus.placa = input("Digite a placa do ônibus: ")
     onibus.modelo = input("Digite o modelo do onibus: ")
-    #alterar pontos
-    #alterar motorista
-    #alterar fiscal
-    dicionarioOnibus[identidade] = onibus
+    pergunta = input("Você deseja editar a rota (SIM/NÃO)?")
+    if (pergunta == "SIM"):
+        onibus.rota = []
+        comando = " "
+        while (comando != "Parar"):
+            comando = input("Deseja Adicionar/Parar")
+            if (comando != "Parar"):
+                identidade2 = input("Digite o id do ponto de parada: ")
+                ponto = dicionarioPontos[identidade2]
+                onibus.adicionarPonto(identidade2, ponto)
+    else:
+        pass
+    identidade3 = input("Digite o id do motorista: ")
+    onibus.motorista = dicionarioMotoristas[identidade3]
+    identidade4 = input("Digite o ide do fiscal: ")
+    onibus.fiscal = dicionarioFiscais[identidade4]
+    dicionarioOnibus[identidade1] = onibus
 def alterarPonto():
     identidade = input("Digite o id do ponto de parada: ")
     ponto = dicionarioPontos[identidade]
@@ -112,7 +125,17 @@ def alterarFiscal():
     fiscal.genero = input("Digite o gênero do fiscal: ")
     dicionarioFiscais[identidade] = fiscal
     #gerar conexão com onibus
-#Alterar rota ainda não pensada
+def alterarRota():
+    identidade1 = input("Digite o id do ônibus: ")
+    onibus = dicionarioOnibus[identidade1]
+    onibus.rota = []
+    comando = " "
+    while (comando != "Parar"):
+        comando = input("Deseja Adicionar/Parar")
+        if (comando != "Parar"):
+            identidade2 = input("Digite o id do ponto de parada: ")
+            ponto = dicionarioPontos[identidade2]
+            onibus.adicionarPonto(identidade2, ponto)
 
 #Funções de deletar
 def deletarOnibus():
