@@ -50,12 +50,14 @@ class Onibus:
         self.rota = []
         self.motorista = motorista
         self.fiscal = " "
+        self.passagem = 0.2*len(self.rota)
     
     def __str__(self):
         return f"Placa: { self.placa }\
                 \nModelo: { self.modelo }\
                 \nMotorista: { self.motorista }\
-                \nFiscal: { self.fiscal }"
+                \nFiscal: { self.fiscal }\
+                \nValor: R$ { self.passagem }"
 
     def adicionarMotorista(self, motorista):
         print("O motorista foi removido do ônibus e movido para realocação!")
@@ -80,3 +82,6 @@ class Onibus:
     def alterarDados(self):
         self.placa = input("Digite a placa do ônibus: ")
         self.modelo = input("Digite o modelo do onibus: ")
+
+    def valorPassagem(self):#Utilizada para atualizar o valor da passagem
+        self.passagem = 0.2*len(self.rota)
