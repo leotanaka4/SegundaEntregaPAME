@@ -54,7 +54,6 @@ class Onibus:
     def __str__(self):
         return f"Placa: { self.placa }\
                 \nModelo: { self.modelo }\
-                \nRota: { self.rota }\
                 \nMotorista: { self.motorista }\
                 \nFiscal: { self.fiscal }"
 
@@ -75,8 +74,8 @@ class Onibus:
         print("O novo fiscal foi adicionado ao ônibus e saiu da realocação!")
         return fiscalRemovido
     
-    def adicionarPonto(self, identidade, ponto):
-        self.rota.insert(identidade, ponto)
+    def adicionarPonto(self, idponto, ponto):
+        self.rota.insert(idponto, ponto)
 
     def alterarDados(self):
         self.placa = input("Digite a placa do ônibus: ")

@@ -66,12 +66,12 @@ def relacionarFiscal():
     dicionarioFiscais[idfiscal] = onibus.adicionarFiscal(fiscal)
     dicionarioOnibus[idonibus] = onibus
 def relacionarPonto():
-    identidade1 = input("Digite o id da parada: ")
-    identidade2 = input("Digite o id do ônibus: ")
-    ponto = dicionarioPontos[identidade1]
-    onibus = dicionarioOnibus[identidade2]
-    onibus.adicionarPonto(identidade1, ponto)
-    dicionarioOnibus[identidade2] = onibus
+    idponto = input("Digite o id do ponto de parada: ")
+    idonibus = input("Digite o id do ônibus: ")
+    ponto = dicionarioPontos[idponto]
+    onibus = dicionarioOnibus[idonibus]
+    onibus.adicionarPonto(idponto, ponto)
+    dicionarioOnibus[idonibus] = onibus
 
 #Funções de alterar
 def alterarOnibus():
@@ -110,6 +110,27 @@ def alterarFiscal():
         print("Não foi feita alteração!")
 def alterarRota():
     idonibus = input("Digite o id do ônibus com a rota que deseja alterar: ")
+    onibus = dicionarioOnibus[idonibus]
+    for ponto in onibus.rota:
+        print(ponto)
+        resposta = input("Deseja Alterar/Remover/Manter esse ponto de parada? ")
+        if (resposta == "Alterar"):
+            comando = " "
+            idponto = 0
+            while (comando != "ID disponível!"):
+                idponto += 1
+                comando = dicionarioPontos.get(idponto, "ID disponível!")
+            dicionarioPontos[idponto] = onibus.rota.pop(ponto)
+            idponto = int(input("Digite o id do ponto de parada que deseja usar: "))
+            onibus.adicionarPonto(idponto, dicionarioPontos.pop(idponto))
+        elif (resposta == "Remover"):
+            comando = " "
+            idponto = 0
+            while (comando != "ID disponível!"):
+                idponto += 1
+                comando = dicionarioPontos.get(idponto, "ID disponível!")
+            dicionarioPontos[idponto] = onibus.rota.pop(ponto)
+    dicionarioOnibus[idonibus] = onibus
 
 #Funções de deletar
 def deletarOnibus():
@@ -135,8 +156,6 @@ def deletarOnibus():
             idfiscal += 1
             comando = dicionarioFiscais.get(idfiscal, "ID disponível!")
         dicionarioFiscais[idfiscal] = onibus.fiscal
-    else:
-        pass
 def deletarPonto():
     idponto = input("Digite o id do ponto de parada: ")
     dicionarioPontos.pop(idponto)#Não é possível remover pontos utilizados
